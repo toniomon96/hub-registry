@@ -1,0 +1,17 @@
+{
+  "name": "hub-registry",
+  "version": "1.0.0",
+  "description": "Validation tooling for the hub-registry targets.yml",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "validate": "node scripts/validate-registry.mjs"
+  },
+  "dependencies": {
+    "cron-parser": "^4.9.0",
+    "yaml": "^2.4.5",
+    "zod": "^3.23.8"
+  }
+}
