@@ -1,0 +1,27 @@
+name: Validate registry
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    name: Validate targets.yml
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Validate registry
+        run: npm run validate

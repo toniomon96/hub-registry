@@ -1,0 +1,16 @@
+defaults:
+  branch: main
+  sensitivity: medium
+
+targets:
+  - repo: TONI-PLACEHOLDER/bambamhub
+    sensitivity: high          # Hub itself is sensitive; force local routing
+    prompts:
+      - id: codebase-audit
+        trigger: "cron:0 9 * * 1"
+      - id: pr-review-detailed
+        trigger: "pr.opened,pr.synchronize"
+        when: "additions + deletions >= 300"
+      - id: pr-review-tight
+        trigger: "pr.opened,pr.synchronize"
+        when: "additions + deletions < 300"
