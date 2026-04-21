@@ -3,7 +3,7 @@ defaults:
   sensitivity: medium
 
 targets:
-  - repo: TONI-PLACEHOLDER/bambamhub
+  - repo: toniomon96/bambamhub
     sensitivity: high          # Hub itself is sensitive; force local routing
     prompts:
       - id: codebase-audit
