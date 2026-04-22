@@ -1,5 +1,49 @@
 targets:
-  - repo: toniomon96/bambamhub
+  - repo: toniomon96/hub
+    sensitivity: medium
+    targets:
+      - prompt_id: codebase-audit
+        trigger: "cron:0 9 * * 1"
+      - prompt_id: pr-review-detailed
+        trigger: "event:pr.opened"
+        when_expr: "additions + deletions >= 300"
+      - prompt_id: pr-review-tight
+        trigger: "event:pr.opened"
+        when_expr: "additions + deletions < 300"
+  - repo: toniomon96/dse-content
+    sensitivity: medium
+    targets:
+      - prompt_id: codebase-audit
+        trigger: "cron:0 9 * * 1"
+      - prompt_id: pr-review-detailed
+        trigger: "event:pr.opened"
+        when_expr: "additions + deletions >= 300"
+      - prompt_id: pr-review-tight
+        trigger: "event:pr.opened"
+        when_expr: "additions + deletions < 300"
+  - repo: toniomon96/FamilyTrips
+    sensitivity: low
+    targets:
+      - prompt_id: codebase-audit
+        trigger: "cron:0 9 * * 1"
+      - prompt_id: pr-review-detailed
+        trigger: "event:pr.opened"
+        when_expr: "additions + deletions >= 300"
+      - prompt_id: pr-review-tight
+        trigger: "event:pr.opened"
+        when_expr: "additions + deletions < 300"
+  - repo: toniomon96/Omnexus
+    sensitivity: medium
+    targets:
+      - prompt_id: codebase-audit
+        trigger: "cron:0 9 * * 1"
+      - prompt_id: pr-review-detailed
+        trigger: "event:pr.opened"
+        when_expr: "additions + deletions >= 300"
+      - prompt_id: pr-review-tight
+        trigger: "event:pr.opened"
+        when_expr: "additions + deletions < 300"
+  - repo: toniomon96/smec_awards
     sensitivity: high
     targets:
       - prompt_id: codebase-audit
@@ -10,3 +54,4 @@ targets:
       - prompt_id: pr-review-tight
         trigger: "event:pr.opened"
         when_expr: "additions + deletions < 300"
+
