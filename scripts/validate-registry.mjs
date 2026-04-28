@@ -19,6 +19,7 @@ import CronParser from 'cron-parser';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const TARGETS_FILE = resolve(__dirname, '..', 'targets.yml');
+const AUTOMATED_REPOS = new Set(['toniomon96/hub']);
 
 // ---------------------------------------------------------------------------
 // Allowed event triggers
@@ -180,6 +181,43 @@ for (const target of registry.targets) {
   }
 }
 if (dupErrors) process.exit(1);
+
+// ---------------------------------------------------------------------------
+// Phase 0.1 portfolio automation boundary
+// ---------------------------------------------------------------------------
+let policyErrors = false;
+
+for (const target of registry.targets) {
+  if (AUTOMATED_REPOS.has(target.repo)) continue;
+
+  if (target.enabled !== false) {
+    console.error(
+      `ERROR: target "${target.repo}" must stay enabled: false during Phase 0.1.`
+    );
+    policyErrors = true;
+  }
+
+  for (const prompt of target.prompts) {
+    const tokens = splitTrigger(prompt.trigger);
+    const isManualOnly = tokens.length === 1 && tokens[0] === 'manual';
+
+    if (!isManualOnly) {
+      console.error(
+        `ERROR: target "${target.repo}", prompt "${prompt.id}" must use trigger: "manual" during Phase 0.1.`
+      );
+      policyErrors = true;
+    }
+
+    if (prompt.when) {
+      console.error(
+        `ERROR: target "${target.repo}", prompt "${prompt.id}" must not set "when" while disabled/manual.`
+      );
+      policyErrors = true;
+    }
+  }
+}
+
+if (policyErrors) process.exit(1);
 
 // ---------------------------------------------------------------------------
 // Warnings
