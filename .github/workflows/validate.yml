@@ -23,5 +23,5 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Test registry
-        run: npm test
+      - name: Validate registry
+        run: npm run validate
