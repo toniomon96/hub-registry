@@ -54,7 +54,7 @@ targets:
 
 | Field | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `id` | string | **yes** | — | Prompt identifier. Must exist in `hub-prompts`. Not validated cross-repo. |
+| `id` | string | **yes** | — | Prompt identifier. Must exist in `hub-prompts`; run `npm run validate:prompt-ids` or `npm test` to check the sibling prompt catalogue. |
 | `trigger` | string | **yes** | — | One or more triggers, comma-separated. See [Trigger grammar](#trigger-grammar). |
 | `when` | string | no | — | Expression evaluated against the event payload. Must be a non-empty string when present. See [When expressions](#when-expressions). |
 | `args` | map | no | `{}` | Arbitrary key-value pairs passed as prompt inputs at render time. |

@@ -9,7 +9,8 @@
   "scripts": {
     "validate": "node scripts/validate-registry.mjs",
     "validate:manifests": "node scripts/validate-manifests.mjs",
-    "test": "npm run validate && npm run validate:manifests"
+    "validate:prompt-ids": "node scripts/validate-prompt-ids.mjs",
+    "test": "npm run validate && npm run validate:manifests && npm run validate:prompt-ids"
   },
   "dependencies": {
     "cron-parser": "^4.9.0",

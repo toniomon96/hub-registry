@@ -41,8 +41,8 @@ The known Phase 0.1 portfolio repos are:
 Run both checks before pushing registry changes:
 
 ```bash
-npm run validate
-npm run validate:manifests
+npm test
 ```
 
 `validate:manifests` checks the sibling repo manifests that are in scope for this pass and deliberately skips `fitness-app`.
+`validate:prompt-ids` checks `targets.yml` against the sibling `hub-prompts` catalogue. Set `HUB_PROMPTS_PATH` if `hub-prompts` is not checked out beside this repo.

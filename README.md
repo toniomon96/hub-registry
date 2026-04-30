@@ -13,7 +13,7 @@ The Hub clones this repository on each sync cycle and loads `targets.yml` into i
 - [How to wire a new prompt](#how-to-wire-a-new-prompt)
 - [Sensitivity inheritance](#sensitivity-inheritance)
 - [Trigger grammar](#trigger-grammar)
-- [Limitations](#limitations)
+- [Local cross-validation](#local-cross-validation)
 - [Replacing TONI-PLACEHOLDER](#replacing-toni-placeholder)
 - [Validation](#validation)
 
@@ -44,8 +44,8 @@ targets:
         when: "additions + deletions >= 300"
 ```
 
-3. Run `npm run validate` locally to confirm the file is valid.
-4. Open a pull request. The CI workflow re-runs the same validation.
+3. Run `npm test` locally to confirm the registry shape, sibling manifests, and prompt ids are valid.
+4. Open a pull request. The CI workflow re-runs the repo-scoped registry validation.
 
 ---
 
@@ -63,7 +63,8 @@ A _prompt_ must already exist in `hub-prompts` with the given `id`. Then:
     focus_area: security
 ```
 
-3. Validate and open a PR as above.
+3. Run `npm test` locally so the new id is checked against the sibling `hub-prompts` catalogue.
+4. Open a PR as above.
 
 ---
 
@@ -115,9 +116,11 @@ The Hub implements the evaluator. This repo only validates that `when` is a non-
 
 ---
 
-## Limitations
+## Local cross-validation
 
-**Prompt IDs are not cross-validated.** The validation script (`npm run validate`) cannot confirm that a referenced prompt `id` actually exists in `hub-prompts` without cloning that repo. If you reference a non-existent prompt id, the Hub will log an error at runtime. Always verify the id against the `hub-prompts` catalogue before merging.
+`npm run validate:prompt-ids` checks every prompt id in `targets.yml` against the sibling `hub-prompts/prompts/` catalogue. It uses `HUB_PROMPTS_PATH` when set, otherwise it expects `../hub-prompts`.
+
+GitHub Actions intentionally keeps the repo-scoped CI gate thin for now. Run the full local `npm test` gate before merging registry edits that add or change prompt ids.
 
 ---
 
@@ -136,9 +139,11 @@ The seed entry in `targets.yml` uses the placeholder owner `TONI-PLACEHOLDER`. T
 ```bash
 npm install
 npm run validate
+npm run validate:prompt-ids
+npm test
 ```
 
-The script:
+The registry validator:
 - Parses `targets.yml`
 - Validates the structure with a Zod schema
 - Checks every `repo` slug matches `^[^/]+/[^/]+$`
@@ -146,4 +151,9 @@ The script:
 - Fails on duplicate `(repo, prompt_id, trigger)` tuples
 - Prints a summary: N targets, M prompt-trigger pairs, K distinct cron schedules
 
-The same check runs automatically on every push and pull request via `.github/workflows/validate.yml`.
+The prompt-id validator:
+- Reads every referenced prompt id in `targets.yml`.
+- Reads only YAML frontmatter from `hub-prompts/prompts/*.md`.
+- Fails if any referenced id is missing from the prompt catalogue.
+
+The repo-scoped registry check runs automatically on every push and pull request via `.github/workflows/validate.yml`. The full local gate remains `npm test`.

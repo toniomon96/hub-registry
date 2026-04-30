@@ -222,15 +222,15 @@ if (policyErrors) process.exit(1);
 // ---------------------------------------------------------------------------
 // Warnings
 // ---------------------------------------------------------------------------
-// Prompt ids cannot be cross-validated without cloning hub-prompts.
+// Prompt id existence is validated by the local workspace gate.
 const allPromptIds = new Set();
 for (const target of registry.targets) {
   for (const prompt of target.prompts) {
     allPromptIds.add(prompt.id);
   }
 }
-console.warn(
-  `WARN: prompt ids [${[...allPromptIds].join(', ')}] are referenced but NOT cross-validated against hub-prompts (see README for details).`
+console.log(
+  `INFO: prompt ids [${[...allPromptIds].join(', ')}] are shape-valid. Run npm run validate:prompt-ids for local hub-prompts cross-validation.`
 );
 
 // ---------------------------------------------------------------------------
