@@ -2,6 +2,9 @@ repo_id: hub-registry
 display_name: "Hub Registry"
 repo_type: internal-platform
 owner: toni
+github_owner: Toni-Montez-Consulting
+github_repo: hub-registry
+github_url: https://github.com/Toni-Montez-Consulting/hub-registry
 client_id: null
 engagement_id: null
 sensitivity_tier: 2
@@ -21,4 +24,4 @@ source_of_truth_files:
   - targets.yml
 status: active
 created_at: 2026-04-27
-last_verified_at: 2026-04-27
+last_verified_at: 2026-04-30

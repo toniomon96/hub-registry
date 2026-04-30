@@ -3,7 +3,7 @@ defaults:
   sensitivity: medium
 
 targets:
-  - repo: toniomon96/hub
+  - repo: Toni-Montez-Consulting/hub
     sensitivity: medium
     prompts:
       - id: codebase-audit
@@ -22,49 +22,49 @@ targets:
       - id: codebase-audit
         trigger: "manual"
 
-  - repo: toniomon96/FamilyTrips
+  - repo: Toni-Montez-Consulting/FamilyTrips
     sensitivity: medium
     enabled: false
     prompts:
       - id: codebase-audit
         trigger: "manual"
 
-  - repo: toniomon96/Omnexus
+  - repo: Toni-Montez-Consulting/Omnexus
     sensitivity: medium
     enabled: false
     prompts:
       - id: codebase-audit
         trigger: "manual"
 
-  - repo: toniomon96/consulting
+  - repo: Toni-Montez-Consulting/consulting
     sensitivity: low
     enabled: false
     prompts:
       - id: codebase-audit
         trigger: "manual"
 
-  - repo: toniomon96/engineering-playbook
+  - repo: Toni-Montez-Consulting/engineering-playbook
     sensitivity: medium
     enabled: false
     prompts:
       - id: codebase-audit
         trigger: "manual"
 
-  - repo: toniomon96/hub-prompts
+  - repo: Toni-Montez-Consulting/hub-prompts
     sensitivity: medium
     enabled: false
     prompts:
       - id: codebase-audit
         trigger: "manual"
 
-  - repo: toniomon96/hub-registry
+  - repo: Toni-Montez-Consulting/hub-registry
     sensitivity: medium
     enabled: false
     prompts:
       - id: codebase-audit
         trigger: "manual"
 
-  - repo: toniomon96/demario-pickleball-1
+  - repo: Toni-Montez-Consulting/demario-pickleball
     branch: master
     sensitivity: high
     enabled: false

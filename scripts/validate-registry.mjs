@@ -19,7 +19,7 @@ import CronParser from 'cron-parser';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const TARGETS_FILE = resolve(__dirname, '..', 'targets.yml');
-const AUTOMATED_REPOS = new Set(['toniomon96/hub']);
+const AUTOMATED_REPOS = new Set(['Toni-Montez-Consulting/hub']);
 
 // ---------------------------------------------------------------------------
 // Allowed event triggers

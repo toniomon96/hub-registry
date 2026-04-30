@@ -25,7 +25,7 @@ The Hub clones this repository on each sync cycle and loads `targets.yml` into i
 2. It parses `targets.yml` and upserts every `(repo, prompt_id, trigger)` triple into the `prompt_targets` SQLite table.
 3. When an event fires (webhook, cron tick, or manual invocation), the Hub queries the table, fetches the matching prompt body from `hub-prompts`, renders it with the supplied `args`, and dispatches it to the configured LLM.
 
-Prompt bodies live in the companion repo [`hub-prompts`](https://github.com/toniomon96/hub-prompts). This repo references prompts only by `id`; it does not contain prompt text.
+Prompt bodies live in the companion repo [`hub-prompts`](https://github.com/Toni-Montez-Consulting/hub-prompts). This repo references prompts only by `id`; it does not contain prompt text.
 
 ---
 
